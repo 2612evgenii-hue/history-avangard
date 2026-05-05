@@ -1,0 +1,1048 @@
+/* ============================================
+   ПРЕМИАЛЬНАЯ ВЫСТАВКА: АВАНГАРД В МОДЕ
+   ============================================
+   Стили для цифровой выставки об авангарде
+   в искусстве и моде конца XIX–XX века
+   ============================================ */
+
+/* ============================================
+   БАЗОВЫЕ СТИЛИ И СБРОС
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Цветовая палитра — НОВАЯ */
+    --color-black: #0a0a0a;
+    --color-white: #f7f6f6;      /* Слоновая кость — основной светлый фон */
+    --color-ivory: #eae8e8;
+    --color-gray-light: #bbbbbb;
+    --color-gray: #404040;        /* Приглушенный серо-бежевый */
+    --color-gray-dark: #424140;   /* Темный серо-коричневый */
+    --color-accent: #ad7780;      /* Бирюзово-зеленый акцент */
+    --color-accent-dark: #955a69; /* Темный вариант акцента */
+    --color-warm-dark: #1b1b1b;   /* Теплый темно-бордовый */
+    --color-base-dark: #1a1a1a;   /* Базовый темный */
+    
+    /* Типографика */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    /* Размеры */
+    --container-max-width: 1400px;
+    --container-padding: 5vw;
+    --section-spacing: 15vh;
+    
+    /* Анимации */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+html {
+    font-size: 16px;
+    /* scroll-behaviour удалён для полностью нативной прокрутки без задержек */
+}
+
+body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   КОНТЕЙНЕР
+   ============================================ */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* ============================================
+   ТИПОГРАФИКА
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.section-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    color: var(--color-black);
+}
+
+.section-intro {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-gray-dark);
+    max-width: 700px;
+    margin-bottom: 4rem;
+}
+
+/* ============================================
+   ГЛАВНЫЙ ЭКРАН / HERO SECTION
+   ============================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-ivory) 100%);
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(135, 180, 174, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(55, 30, 30, 0.04) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.hero-image-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 70% 95% at 50% 50%,
+        rgba(245, 245, 240, 0.92) 0%,
+        rgba(245, 245, 240, 0.8) 35%,
+        rgba(245, 245, 240, 0.2) 55%,
+        transparent 75%
+    );
+    pointer-events: none;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* .hero-geometric {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.05;
+    background-image: 
+        linear-gradient(45deg, var(--color-black) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--color-black) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--color-black) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--color-black) 75%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+} */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-year-range {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+    opacity: 0;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--color-black);
+    margin-bottom: 2rem;
+}
+
+.hero-title-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--color-gray-dark);
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    opacity: 0;
+}
+
+.hero-scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    opacity: 0;
+    animation: scrollHint 2s ease-in-out infinite;
+}
+
+@keyframes scrollHint {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* ============================================
+   КУРАТОРСКОЕ ВВЕДЕНИЕ / MANIFESTO
+   ============================================ */
+.manifesto {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-white);
+}
+
+.manifesto-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+    max-width: 1200px;
+}
+
+.manifesto-text-block {
+    padding: 2rem 0;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.manifesto-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-black);
+}
+
+.manifesto-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-gray-dark);
+    margin-bottom: 1.5rem;
+}
+
+.manifesto-text:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   ТАЙМЛАЙН / TIMELINE SECTION
+   ============================================ */
+.timeline {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-ivory);
+}
+
+.timeline-track {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+    padding-left: 4rem;
+}
+
+.timeline-track::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-accent), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-30px);
+    padding-bottom: 2rem;
+}
+
+.timeline-content {
+    padding: 1.25rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    border: 1px solid var(--color-gray-light);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4.5rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-white);
+}
+
+.timeline-year {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-black);
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-dark);
+}
+
+/* ============================================
+   РАЗДЕЛИТЕЛЬ С ЦИТАТОЙ
+   ============================================ */
+.quote-separator {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-warm-dark);
+    color: var(--color-white);
+}
+
+.quote-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.quote-author {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 2rem;
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* ============================================
+   СЕТКА ЛИЧНОСТЕЙ / PERSONALITIES GRID
+   ============================================ */
+.personalities {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-white);
+}
+
+.personalities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+/* ============================================
+   КАРТОЧКА ЛИЧНОСТИ
+   ============================================
+   КАК ИЗМЕНИТЬ КАРТОЧКУ:
+   - .personality-card-image-placeholder — замените на <img src="путь/к/изображению.jpg">
+   - .personality-card-name — имя личности
+   - .personality-card-country — страна
+   - .personality-card-years — годы жизни
+   - .personality-card-description — краткое описание
+   - .personality-card-tag — тег/категория
+   ============================================ */
+.personality-card {
+    position: relative;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-smooth);
+    opacity: 0;
+    transform: translateY(30px);
+    user-select: none;
+}
+
+.personality-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-accent);
+}
+
+.personality-card:active {
+    transform: translateY(-3px);
+    transition: all 0.2s var(--ease-smooth);
+}
+
+.personality-card-image {
+    width: 100%;
+    height: 400px;
+    background-color: var(--color-gray-light);
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.personality-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray);
+    background: linear-gradient(135deg, var(--color-gray-light) 0%, var(--color-ivory) 100%);
+}
+
+/* Стили для изображений в карточках */
+.personality-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+}
+
+.personality-card:hover .personality-card-image img {
+    transform: scale(1.1);
+}
+
+.personality-card-content {
+    padding: 2rem;
+}
+
+.personality-card-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-gray);
+}
+
+.personality-card-name {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-black);
+}
+
+.personality-card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-gray-dark);
+    margin-bottom: 1.5rem;
+}
+
+.personality-card-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    border-radius: 8px;
+}
+
+/* ============================================
+   МОДАЛЬНОЕ ОКНО ДЕТАЛЕЙ
+   ============================================ */
+.personality-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.12);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+    backdrop-filter: none;
+}
+
+.personality-modal.active {
+    display: flex;
+}
+
+.modal-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-white);
+    border: none;
+    color: var(--color-black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
+    z-index: 1002;
+}
+
+.modal-close:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.modal-content {
+    max-width: 900px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray) transparent;
+    border-radius: 24px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gray-dark);
+}
+
+/* ============================================
+   ДЕТАЛЬНЫЙ ПРОФИЛЬ ЛИЧНОСТИ
+   ============================================
+   КАК ИЗМЕНИТЬ ПРОФИЛЬ:
+   - .personality-detail-image-placeholder — замените на <img>
+   - .personality-detail-name — имя
+   - .personality-detail-country — страна
+   - .personality-detail-years — годы
+   - .personality-detail-section — биография, инновации, влияние
+   - .personality-detail-gallery — галерея работ
+   ============================================ */
+.personality-detail {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.personality-detail-hero {
+    width: 100%;
+    height: 44vh;
+    min-height: 320px;
+    background-color: var(--color-gray-light);
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+}
+
+.personality-detail-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-gray);
+    background: linear-gradient(145deg, var(--color-gray-light) 0%, var(--color-ivory) 100%);
+}
+
+/* Стили для изображений в детальных профилях */
+.personality-detail-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.personality-detail-content {
+    padding: 2rem 2rem 3rem;
+}
+
+.personality-detail-header {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem 1.75rem;
+    background: linear-gradient(135deg, var(--color-ivory) 0%, var(--color-gray-light) 100%);
+    border-radius: 16px;
+    position: relative;
+}
+
+.personality-detail-meta {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gray);
+}
+
+.personality-detail-name {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-black);
+    letter-spacing: -0.02em;
+}
+
+.personality-detail-body {
+    max-width: 100%;
+}
+
+.personality-detail-section {
+    margin-bottom: 1.5rem;
+    padding: 1.75rem 2rem;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 16px;
+    transition: border-color 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+    position: relative;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.personality-detail-section:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+.personality-detail-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity 0.25s var(--ease-smooth);
+}
+
+.personality-detail-section:hover::before {
+    opacity: 1;
+}
+
+.personality-detail-section h3 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-black);
+}
+
+.personality-detail-section p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-gray-dark);
+    margin-bottom: 1.5rem;
+}
+
+.personality-detail-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.personality-detail-section li {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-gray-dark);
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.personality-detail-section li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.personality-detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding: 2rem 0 0;
+    position: relative;
+}
+
+.personality-detail .gallery-item {
+    border-radius: 12px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 300px;
+    background-color: var(--color-gray-light);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-smooth);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 16px;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-accent);
+}
+
+.gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray);
+    background: linear-gradient(135deg, var(--color-gray-light) 0%, var(--color-ivory) 100%);
+}
+
+/* Стили для изображений в галерее */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-smooth);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   ТЕМЫ И ВЛИЯНИЕ / THEMES SECTION
+   ============================================ */
+.themes {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-ivory);
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.theme-card {
+    background-color: var(--color-white);
+    padding: 3rem;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 20px;
+    transition: all 0.4s var(--ease-smooth);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.theme-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent);
+}
+
+.theme-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-black);
+}
+
+.theme-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-dark);
+}
+
+/* ============================================
+   ЗАКЛЮЧЕНИЕ / CLOSING SECTION
+   ============================================ */
+.closing {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-white);
+}
+
+.closing-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-ivory);
+    border-radius: 20px;
+    border: 1px solid var(--color-gray-light);
+}
+
+.closing-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 3rem;
+    color: var(--color-black);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.closing-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--color-gray-dark);
+}
+
+.closing-text p {
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.closing-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   ФУТЕР / FOOTER
+   ============================================ */
+.footer {
+    padding: 4rem 0;
+    background-color: var(--color-base-dark);
+    color: var(--color-white);
+    text-align: center;
+    border-radius: 24px 24px 0 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.footer-year {
+    font-size: 0.75rem;
+    font-weight: 300;
+    opacity: 0.5;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ / RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    :root {
+        --container-padding: 4vw;
+        --section-spacing: 10vh;
+    }
+    
+    .personalities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .manifesto-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 5vw;
+        --section-spacing: 8vh;
+    }
+    
+    .hero {
+        min-height: 500px;
+    }
+    
+    .personalities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-track {
+        padding-left: 2rem;
+    }
+    
+    .timeline-item::before {
+        left: -2.5rem;
+    }
+    
+    .personality-detail-hero {
+        height: 40vh;
+        min-height: 300px;
+        margin-bottom: 2rem;
+    }
+    
+    .personality-detail-content {
+        padding: 0 1rem 2rem;
+    }
+    
+    .personality-detail-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .personality-detail-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .personality-detail-gallery {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal-content {
+        padding: 1rem 0;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .personality-card-image {
+        height: 300px;
+    }
+}
+
+/* ============================================
+   УТИЛИТЫ ДЛЯ АНИМАЦИЙ
+   ============================================ */
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* ============================================
+   ПОДДЕРЖКА REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-scroll-hint {
+        animation: none;
+    }
+}
